@@ -1,0 +1,3 @@
+".\Objects\MAC_OP.obj" 
+TO ".\Objects\MAC_OP" 
+PRINT(".\Listings\MAC_OP.m51") RAMSIZE(256) 

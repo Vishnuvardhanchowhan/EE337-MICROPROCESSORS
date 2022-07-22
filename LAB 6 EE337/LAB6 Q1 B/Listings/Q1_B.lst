@@ -1,0 +1,84 @@
+A51 MACRO ASSEMBLER  Q1_B                                                                 03/07/2022 14:57:25 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Q1_B.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE Q1_B.a51 SET(SMALL) DEBUG PRINT(.\Listings\Q1_B.lst) OBJECT(.\Obj
+                      ects\Q1_B.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 3100              2     CALL MAIN
+0002 80FE              3     HERE: SJMP HERE
+0100                   4     ORG 100H
+0100                   5     MAIN:
+0100 753004            6     MOV 30H,#4
+0103                   7     LOOP_MAIN:
+0103 7590F0            8     MOV P1,#0F0H
+0106 3111              9     CALL DELAY_NS
+0108 759000           10     MOV P1,#00H
+010B 3111             11     CALL DELAY_NS
+010D 020103           12     LJMP LOOP_MAIN
+0110 22               13     RET
+0111                  14     DELAY_NS:
+0111 741F             15     MOV A,#31
+0113 8530F0           16     MOV B,30H
+0116 A4               17     MUL AB
+0117 FB               18     MOV R3,A
+0118                  19     LOOP_2: 
+0118 DB01             20     DJNZ R3,DELAY
+011A 22               21     RET
+011B                  22     DELAY:
+011B 79FF             23     MOV R1,#0FFH
+011D 7AFF             24     MOV R2,#0FFH
+011F 758901           25     MOV TMOD,#00000001B
+0122 E9               26     MOV A,R1
+0123 64FF             27     XRL A,#0FFH
+0125 F9               28     MOV R1,A
+0126 EA               29     MOV A,R2
+0127 64FF             30     XRL A,#0FFH
+0129 FA               31     MOV R2,A
+012A 7401             32     MOV A,#1
+012C 29               33     ADD A,R1
+012D F9               34     MOV R1,A
+012E E4               35     CLR A
+012F 13               36     RRC A
+0130 2A               37     ADD A,R2
+0131 FA               38     MOV R2,A
+0132 898A             39     MOV TL0,R1
+0134 8A8C             40     MOV TH0,R2
+0136 D28C             41     SETB TR0
+0138 308DFD           42     LOOP_1: JNB TF0,LOOP_1
+013B C28C             43     CLR TR0
+013D C28D             44     CLR TF0
+013F 020118           45     LJMP LOOP_2
+                      46     END
+A51 MACRO ASSEMBLER  Q1_B                                                                 03/07/2022 14:57:25 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+DELAY. . . . . . .  C ADDR   011BH   A   
+DELAY_NS . . . . .  C ADDR   0111H   A   
+HERE . . . . . . .  C ADDR   0002H   A   
+LOOP_1 . . . . . .  C ADDR   0138H   A   
+LOOP_2 . . . . . .  C ADDR   0118H   A   
+LOOP_MAIN. . . . .  C ADDR   0103H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,129 @@
+A51 MACRO ASSEMBLER  CONVERSION_HEX_ASCII                                                 04/01/2022 22:20:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\CONVERSION_HEX-ASCII.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE CONVERSION_HEX-ASCII.a51 SET(SMALL) DEBUG PRINT(.\Listings\CONVER
+                      SION_HEX-ASCII.lst) OBJECT(.\Objects\CONVERSION_HEX-ASCII.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     HEX_ASCII:
+0000 A830              2     MOV R0,30H
+0002 E8                3     MOV A,R0
+0003 540F              4     ANL A,#0FH
+0005 F9                5     MOV R1,A
+0006 E8                6     MOV A,R0
+0007 54F0              7     ANL A,#0F0H
+0009 C4                8     SWAP A
+000A FA                9     MOV R2,A
+000B AC01             10     MOV R4,01H
+000D 111B             11     CALL CONVERSION
+000F 850360           12     MOV 60H,03H
+0012 AC02             13     MOV R4,02H
+0014 111B             14     CALL CONVERSION
+0016 850361           15     MOV 61H,03H
+0019 80FE             16     HERE:SJMP HERE
+                      17     
+001B                  18     CONVERSION:
+001B                  19     N0:
+001B BC0003           20     CJNE R4,#00H,N1
+001E 7B30             21     MOV R3,#30H
+0020 22               22     RET
+0021                  23     N1:
+0021 BC0103           24     CJNE R4,#01H,N2
+0024 7B31             25     MOV R3,#31H
+0026 22               26     RET
+0027                  27     N2:
+0027 BC0203           28     CJNE R4,#02H,N3
+002A 7B32             29     MOV R3,#32H
+002C 22               30     RET
+002D                  31     N3:
+002D BC0303           32     CJNE R4,#03H,N4
+0030 7B33             33     MOV R3,#33H
+0032 22               34     RET
+0033                  35     N4:
+0033 BC0403           36     CJNE R4,#04H,N5
+0036 7B34             37     MOV R3,#34H
+0038 22               38     RET
+0039                  39     N5:
+0039 BC0503           40     CJNE R4,#05H,N6
+003C 7B35             41     MOV R3,#35H
+003E 22               42     RET
+003F                  43     N6:
+003F BC0603           44     CJNE R4,#06H,N7
+0042 7B36             45     MOV R3,#36H
+0044 22               46     RET
+0045                  47     N7:
+0045 BC0703           48     CJNE R4,#07H,N8
+0048 7B37             49     MOV R3,#37H
+004A 22               50     RET
+004B                  51     N8:
+004B BC0803           52     CJNE R4,#08H,N9
+004E 7B38             53     MOV R3,#38H
+0050 22               54     RET
+0051                  55     N9:
+0051 BC0903           56     CJNE R4,#09H,N10
+0054 7B39             57     MOV R3,#39H
+A51 MACRO ASSEMBLER  CONVERSION_HEX_ASCII                                                 04/01/2022 22:20:44 PAGE     2
+
+0056 22               58     RET
+0057                  59     N10:
+0057 BC0A03           60     CJNE R4,#0AH,N11
+005A 7B41             61     MOV R3,#41H
+005C 22               62     RET
+005D                  63     N11:
+005D BC0B03           64     CJNE R4,#0BH,N12
+0060 7B42             65     MOV R3,#42H
+0062 22               66     RET
+0063                  67     N12:
+0063 BC0C03           68     CJNE R4,#0CH,N13
+0066 7B43             69     MOV R3,#43H
+0068 22               70     RET
+0069                  71     N13:
+0069 BC0D03           72     CJNE R4,#0DH,N14
+006C 7B44             73     MOV R3,#44H
+006E 22               74     RET
+006F                  75     N14:
+006F BC0E03           76     CJNE R4,#0EH,N15
+0072 7B45             77     MOV R3,#45H
+0074 22               78     RET
+0075                  79     N15:
+0075 7B46             80     MOV R3,#46H
+0077 22               81     RET
+                      82     END 
+                             
+                             
+A51 MACRO ASSEMBLER  CONVERSION_HEX_ASCII                                                 04/01/2022 22:20:44 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CONVERSION . . . .  C ADDR   001BH   A   
+HERE . . . . . . .  C ADDR   0019H   A   
+HEX_ASCII. . . . .  C ADDR   0000H   A   
+N0 . . . . . . . .  C ADDR   001BH   A   
+N1 . . . . . . . .  C ADDR   0021H   A   
+N10. . . . . . . .  C ADDR   0057H   A   
+N11. . . . . . . .  C ADDR   005DH   A   
+N12. . . . . . . .  C ADDR   0063H   A   
+N13. . . . . . . .  C ADDR   0069H   A   
+N14. . . . . . . .  C ADDR   006FH   A   
+N15. . . . . . . .  C ADDR   0075H   A   
+N2 . . . . . . . .  C ADDR   0027H   A   
+N3 . . . . . . . .  C ADDR   002DH   A   
+N4 . . . . . . . .  C ADDR   0033H   A   
+N5 . . . . . . . .  C ADDR   0039H   A   
+N6 . . . . . . . .  C ADDR   003FH   A   
+N7 . . . . . . . .  C ADDR   0045H   A   
+N8 . . . . . . . .  C ADDR   004BH   A   
+N9 . . . . . . . .  C ADDR   0051H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

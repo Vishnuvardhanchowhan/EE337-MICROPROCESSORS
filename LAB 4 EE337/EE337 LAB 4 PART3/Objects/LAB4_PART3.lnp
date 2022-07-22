@@ -1,0 +1,3 @@
+".\Objects\1S_DELAY.obj" 
+TO ".\Objects\LAB4_PART3" 
+PRINT(".\Listings\LAB4_PART3.m51") RAMSIZE(256) 

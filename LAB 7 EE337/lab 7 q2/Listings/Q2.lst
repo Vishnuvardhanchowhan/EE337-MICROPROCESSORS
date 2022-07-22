@@ -1,0 +1,753 @@
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Q2.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE Q2.a51 SET(SMALL) DEBUG PRINT(.\Listings\Q2.lst) OBJECT(.\Objects
+                      \Q2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0000H
+  00A0                 2     LCD_data equ P2    ;LCD Data port
+  0080                 3     LCD_rs   equ P0.0  ;LCD Register Select
+  0081                 4     LCD_rw   equ P0.1  ;LCD Read/Write
+  0082                 5     LCD_en   equ P0.2  ;LCD Enable
+0000 020040            6     LJMP MAIN
+001B                   7     ORG 001BH
+001B 021000            8     LJMP TMRINTR
+0040                   9     ORG 0040H
+0040                  10     MAIN:
+0040 7B1E             11     MOV R3,#30
+0042 7D50             12     MOV R5,#050H
+0044 7EC3             13     MOV R6,#0C3H
+0046 758911           14     MOV TMOD,#00010001B
+0049 ED               15     MOV A,R5
+004A 64FF             16     XRL A,#0FFH
+004C FD               17     MOV R5,A
+004D EE               18     MOV A,R6
+004E 64FF             19     XRL A,#0FFH
+0050 FE               20     MOV R6,A
+0051 7401             21     MOV A,#1
+0053 2D               22     ADD A,R5
+0054 FD               23     MOV R5,A
+0055 E4               24     CLR A
+0056 13               25     RRC A
+0057 2E               26     ADD A,R6
+0058 FE               27     MOV R6,A
+0059 8D8B             28     MOV TL1,R5
+005B 8E8D             29     MOV TH1,R6
+005D 75A888           30     MOV IE,#10001000B
+0060 D28E             31     SETB TR1
+0062 5100             32     acall lcd_init 
+0064 516B             33     acall delay
+0066 516B             34     acall delay
+0068 7481             35     MOV A,#81H
+006A 513D             36     acall lcd_command
+006C 516B             37     acall delay
+006E 90027C           38     mov dptr,#SLINE1
+0071 514C             39     acall lcd_sendstring
+0073 516B             40     acall delay
+0075 7F01             41     MOV R7,#1
+0077 C280             42     CLR P0.0
+0079 C281             43     CLR P0.1
+007B C282             44     CLR P0.2
+007D                  45     N1:
+007D D287             46     SETB P0.7
+007F 5189             47     ACALL DELAY_N1
+0081 C287             48     CLR p0.7
+0083 5189             49     ACALL DELAY_N1
+0085 BC01F5           50     CJNE R4,#1,N1
+                      51     
+0088                  52     RETN2_1:
+0088 7C00             53     MOV R4,#0
+008A 7F02             54     MOV R7,#2
+008C 7B1E             55     MOV R3,#30
+008E 7D50             56     MOV R5,#050H
+0090 7EC3             57     MOV R6,#0C3H
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     2
+
+0092 758911           58     MOV TMOD,#00010001B
+0095 ED               59     MOV A,R5
+0096 64FF             60     XRL A,#0FFH
+0098 FD               61     MOV R5,A
+0099 EE               62     MOV A,R6
+009A 64FF             63     XRL A,#0FFH
+009C FE               64     MOV R6,A
+009D 7401             65     MOV A,#1
+009F 2D               66     ADD A,R5
+00A0 FD               67     MOV R5,A
+00A1 E4               68     CLR A
+00A2 13               69     RRC A
+00A3 2E               70     ADD A,R6
+00A4 FE               71     MOV R6,A
+00A5 8D8B             72     MOV TL1,R5
+00A7 8E8D             73     MOV TH1,R6
+00A9 75A888           74     MOV IE,#10001000B
+00AC D28E             75     SETB TR1
+00AE                  76     N2_1:
+00AE D287             77     SETB P0.7
+00B0 51B2             78     ACALL DELAY_N2
+00B2 C287             79     CLR p0.7
+00B4 51B2             80     ACALL DELAY_N2
+00B6 BC01F5           81     CJNE R4,#1,N2_1
+                      82     
+00B9                  83     RETN3:
+00B9 7C00             84     MOV R4,#0
+00BB 7F03             85     MOV R7,#3
+00BD 7B1E             86     MOV R3,#30
+00BF 7D50             87     MOV R5,#050H
+00C1 7EC3             88     MOV R6,#0C3H
+00C3 758911           89     MOV TMOD,#00010001B
+00C6 ED               90     MOV A,R5
+00C7 64FF             91     XRL A,#0FFH
+00C9 FD               92     MOV R5,A
+00CA EE               93     MOV A,R6
+00CB 64FF             94     XRL A,#0FFH
+00CD FE               95     MOV R6,A
+00CE 7401             96     MOV A,#1
+00D0 2D               97     ADD A,R5
+00D1 FD               98     MOV R5,A
+00D2 E4               99     CLR A
+00D3 13              100     RRC A
+00D4 2E              101     ADD A,R6
+00D5 FE              102     MOV R6,A
+00D6 8D8B            103     MOV TL1,R5
+00D8 8E8D            104     MOV TH1,R6
+00DA 75A888          105     MOV IE,#10001000B
+00DD D28E            106     SETB TR1
+00DF                 107     N3:
+00DF D287            108     SETB P0.7
+00E1 51DB            109     ACALL DELAY_N3
+00E3 C287            110     CLR p0.7
+00E5 51DB            111     ACALL DELAY_N3
+00E7 BC01F5          112     CJNE R4,#1,N3
+                     113     
+00EA                 114     RETN2_2:
+00EA 7C00            115     MOV R4,#0
+00EC 7F04            116     MOV R7,#4
+00EE 7B1E            117     MOV R3,#30
+00F0 7D50            118     MOV R5,#050H
+00F2 7EC3            119     MOV R6,#0C3H
+00F4 758911          120     MOV TMOD,#00010001B
+00F7 ED              121     MOV A,R5
+00F8 64FF            122     XRL A,#0FFH
+00FA FD              123     MOV R5,A
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     3
+
+00FB EE              124     MOV A,R6
+00FC 64FF            125     XRL A,#0FFH
+00FE FE              126     MOV R6,A
+00FF 7401            127     MOV A,#1
+0101 2D              128     ADD A,R5
+0102 FD              129     MOV R5,A
+0103 E4              130     CLR A
+0104 13              131     RRC A
+0105 2E              132     ADD A,R6
+0106 FE              133     MOV R6,A
+0107 8D8B            134     MOV TL1,R5
+0109 8E8D            135     MOV TH1,R6
+010B 75A888          136     MOV IE,#10001000B
+010E D28E            137     SETB TR1
+0110                 138     N2_2:
+0110 D287            139     SETB P0.7
+0112 51B2            140     ACALL DELAY_N2
+0114 C287            141     CLR p0.7
+0116 51B2            142     ACALL DELAY_N2
+0118 BC01F5          143     CJNE R4,#1,N2_2
+                     144     
+011B                 145     RETN4_1:
+011B 7C00            146     MOV R4,#0
+011D 7F05            147     MOV R7,#5
+011F 7B28            148     MOV R3,#40
+0121 7D50            149     MOV R5,#050H
+0123 7EC3            150     MOV R6,#0C3H
+0125 758911          151     MOV TMOD,#00010001B
+0128 ED              152     MOV A,R5
+0129 64FF            153     XRL A,#0FFH
+012B FD              154     MOV R5,A
+012C EE              155     MOV A,R6
+012D 64FF            156     XRL A,#0FFH
+012F FE              157     MOV R6,A
+0130 7401            158     MOV A,#1
+0132 2D              159     ADD A,R5
+0133 FD              160     MOV R5,A
+0134 E4              161     CLR A
+0135 13              162     RRC A
+0136 2E              163     ADD A,R6
+0137 FE              164     MOV R6,A
+0138 8D8B            165     MOV TL1,R5
+013A 8E8D            166     MOV TH1,R6
+013C 75A888          167     MOV IE,#10001000B
+013F D28E            168     SETB TR1
+0141                 169     N4_1:
+0141 D287            170     SETB P0.7
+0143 7104            171     ACALL DELAY_N4
+0145 C287            172     CLR p0.7
+0147 7104            173     ACALL DELAY_N4
+0149 BC01F5          174     CJNE R4,#1,N4_1
+                     175     
+014C                 176     RETSIL:
+014C 7C00            177     MOV R4,#0
+014E 7F06            178     MOV R7,#6
+0150 7B14            179     MOV R3,#20
+0152 7D50            180     MOV R5,#050H
+0154 7EC3            181     MOV R6,#0C3H
+0156 758911          182     MOV TMOD,#00010001B
+0159 ED              183     MOV A,R5
+015A 64FF            184     XRL A,#0FFH
+015C FD              185     MOV R5,A
+015D EE              186     MOV A,R6
+015E 64FF            187     XRL A,#0FFH
+0160 FE              188     MOV R6,A
+0161 7401            189     MOV A,#1
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     4
+
+0163 2D              190     ADD A,R5
+0164 FD              191     MOV R5,A
+0165 E4              192     CLR A
+0166 13              193     RRC A
+0167 2E              194     ADD A,R6
+0168 FE              195     MOV R6,A
+0169 8D8B            196     MOV TL1,R5
+016B 8E8D            197     MOV TH1,R6
+016D 75A888          198     MOV IE,#10001000B
+0170 D28E            199     SETB TR1
+0172                 200     NSIL:
+0172 C287            201     CLR P0.7
+0174 BC01FB          202     CJNE R4,#1,NSIL
+                     203     
+0177                 204     RETN4_2:
+0177 7C00            205     MOV R4,#0
+0179 7F07            206     MOV R7,#7
+017B 7B28            207     MOV R3,#40
+017D 7D50            208     MOV R5,#050H
+017F 7EC3            209     MOV R6,#0C3H
+0181 758911          210     MOV TMOD,#00010001B
+0184 ED              211     MOV A,R5
+0185 64FF            212     XRL A,#0FFH
+0187 FD              213     MOV R5,A
+0188 EE              214     MOV A,R6
+0189 64FF            215     XRL A,#0FFH
+018B FE              216     MOV R6,A
+018C 7401            217     MOV A,#1
+018E 2D              218     ADD A,R5
+018F FD              219     MOV R5,A
+0190 E4              220     CLR A
+0191 13              221     RRC A
+0192 2E              222     ADD A,R6
+0193 FE              223     MOV R6,A
+0194 8D8B            224     MOV TL1,R5
+0196 8E8D            225     MOV TH1,R6
+0198 75A888          226     MOV IE,#10001000B
+019B D28E            227     SETB TR1
+019D                 228     N4_2:
+019D D287            229     SETB P0.7
+019F 7104            230     ACALL DELAY_N4
+01A1 C287            231     CLR p0.7
+01A3 7104            232     ACALL DELAY_N4
+01A5 BC01F5          233     CJNE R4,#1,N4_2
+                     234     
+01A8                 235     RETN5:
+01A8 7C00            236     MOV R4,#0
+01AA 7F08            237     MOV R7,#8
+01AC 7B28            238     MOV R3,#40
+01AE 7D50            239     MOV R5,#050H
+01B0 7EC3            240     MOV R6,#0C3H
+01B2 758911          241     MOV TMOD,#00010001B
+01B5 ED              242     MOV A,R5
+01B6 64FF            243     XRL A,#0FFH
+01B8 FD              244     MOV R5,A
+01B9 EE              245     MOV A,R6
+01BA 64FF            246     XRL A,#0FFH
+01BC FE              247     MOV R6,A
+01BD 7401            248     MOV A,#1
+01BF 2D              249     ADD A,R5
+01C0 FD              250     MOV R5,A
+01C1 E4              251     CLR A
+01C2 13              252     RRC A
+01C3 2E              253     ADD A,R6
+01C4 FE              254     MOV R6,A
+01C5 8D8B            255     MOV TL1,R5
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     5
+
+01C7 8E8D            256     MOV TH1,R6
+01C9 75A888          257     MOV IE,#10001000B
+01CC D28E            258     SETB TR1
+01CE                 259     N5:
+01CE D287            260     SETB P0.7
+01D0 712D            261     ACALL DELAY_N5
+01D2 C287            262     CLR p0.7
+01D4 712D            263     ACALL DELAY_N5
+01D6 BC01F5          264     CJNE R4,#1,N5
+                     265     
+01D9 020040          266     LJMP MAIN
+                     267     
+                     268     
+0200                 269     ORG 0200H
+                     270             
+0200                 271     lcd_init:
+0200 75A038          272              mov   LCD_data,#38H  ;Function set: 2 Line, 8-bit, 5x7 dots
+0203 C280            273              clr   LCD_rs         ;Selected command register
+0205 C281            274              clr   LCD_rw         ;We are writing in instruction register
+0207 D282            275              setb  LCD_en  ;Enable H->L
+0209 516B            276                      acall delay
+020B C282            277              clr   LCD_en
+020D 516B            278                  acall delay
+                     279     
+020F 75A00C          280              mov   LCD_data,#0CH  ;Display on, Curson off
+0212 C280            281              clr   LCD_rs         ;Selected instruction register
+0214 C281            282              clr   LCD_rw         ;We are writing in instruction register
+0216 D282            283              setb  LCD_en         ;Enable H->L
+0218 516B            284                      acall delay
+021A C282            285              clr   LCD_en
+                     286              
+021C 516B            287                      acall delay
+021E 75A001          288              mov   LCD_data,#01H  ;Clear LCD
+0221 C280            289              clr   LCD_rs         ;Selected command register
+0223 C281            290              clr   LCD_rw         ;We are writing in instruction register
+0225 D282            291              setb  LCD_en         ;Enable H->L
+0227 516B            292                      acall delay
+0229 C282            293              clr   LCD_en
+                     294              
+022B 516B            295                      acall delay
+                     296     
+022D 75A006          297              mov   LCD_data,#06H  ;Entry mode, auto increment with no shift
+0230 C280            298              clr   LCD_rs         ;Selected command register
+0232 C281            299              clr   LCD_rw         ;We are writing in instruction register
+0234 D282            300              setb  LCD_en         ;Enable H->L
+0236 516B            301                      acall delay
+0238 C282            302              clr   LCD_en
+                     303     
+023A 516B            304                      acall delay
+                     305              
+023C 22              306              ret 
+                     307     
+023D                 308      lcd_command:
+023D F5A0            309              mov   LCD_data,A     ;Move the command to LCD port
+023F C280            310              clr   LCD_rs         ;Selected command register
+0241 C281            311              clr   LCD_rw         ;We are writing in instruction register
+0243 D282            312              setb  LCD_en         ;Enable H->L
+0245 516B            313                      acall delay
+0247 C282            314              clr   LCD_en
+0249 516B            315                      acall delay
+                     316         
+024B 22              317              ret  
+024C                 318     lcd_sendstring:
+024C C0E0            319             push 0e0h
+024E                 320             lcd_sendstring_loop:
+024E E4              321                          clr   a                 ;clear Accumulator for any previous data
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     6
+
+024F 93              322                      movc  a,@a+dptr         ;load the first character in accumulator
+0250 6005            323                      jz    exit              ;go to exit if zero
+0252 515A            324                      acall lcd_senddata      ;send first char
+0254 A3              325                      inc   dptr              ;increment data pointer
+0255 80F7            326                      sjmp  LCD_sendstring_loop    ;jump back to send the next character
+0257 D0E0            327     exit:    pop 0e0h
+0259 22              328              ret 
+                     329     
+025A                 330     lcd_senddata:
+025A F5A0            331              mov   LCD_data,A     ;Move the command to LCD port
+025C D280            332              setb  LCD_rs         ;Selected data register
+025E C281            333              clr   LCD_rw         ;We are writing
+0260 D282            334              setb  LCD_en         ;Enable H->L
+0262 516B            335                      acall delay
+0264 C282            336              clr   LCD_en
+0266 516B            337              acall delay
+0268 516B            338                      acall delay
+026A 22              339              ret
+026B C000            340     delay:   push 0
+026D C001            341                  push 1
+026F 7801            342              mov r0,#1
+0271 7FFF            343     loop2:   mov r7,#255
+0273 DFFE            344              loop1:  djnz r7, loop1
+0275 D8FA            345              djnz r0, loop2
+0277 D001            346              pop 1
+0279 D000            347              pop 0 
+027B 22              348              ret
+                     349     
+027C                 350     SLINE1:
+027C 524F4C4C        351              DB   "ROLLING TIME", 00H
+0280 494E4720                
+0284 54494D45                
+0288 00                      
+                     352     
+                     353             
+0289                 354     DELAY_N1:
+0289 79C1            355     MOV R1,#0C1H
+028B 7A11            356     MOV R2,#011H
+028D 758911          357     MOV TMOD,#00010001B
+0290 E9              358     MOV A,R1
+0291 64FF            359     XRL A,#0FFH
+0293 F9              360     MOV R1,A
+0294 EA              361     MOV A,R2
+0295 64FF            362     XRL A,#0FFH
+0297 FA              363     MOV R2,A
+0298 7401            364     MOV A,#1
+029A 29              365     ADD A,R1
+029B F9              366     MOV R1,A
+029C E4              367     CLR A
+029D 13              368     RRC A
+029E 2A              369     ADD A,R2
+029F FA              370     MOV R2,A
+02A0 898A            371     MOV TL0,R1
+02A2 8A8C            372     MOV TH0,R2
+02A4 7900            373     MOV R1,#00H
+02A6 7A00            374     MOV R2,#00H
+02A8 D28C            375     SETB TR0
+02AA 308DFD          376     LOOP_N1: JNB TF0,LOOP_N1
+02AD C28C            377     CLR TR0
+02AF C28D            378     CLR TF0
+02B1 22              379     RET
+                     380     
+02B2                 381     DELAY_N2:
+02B2 79D0            382     MOV R1,#0D0H
+02B4 7A0F            383     MOV R2,#0FH
+02B6 758911          384     MOV TMOD,#00010001B
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     7
+
+02B9 E9              385     MOV A,R1
+02BA 64FF            386     XRL A,#0FFH
+02BC F9              387     MOV R1,A
+02BD EA              388     MOV A,R2
+02BE 64FF            389     XRL A,#0FFH
+02C0 FA              390     MOV R2,A
+02C1 7401            391     MOV A,#1
+02C3 29              392     ADD A,R1
+02C4 F9              393     MOV R1,A
+02C5 E4              394     CLR A
+02C6 13              395     RRC A
+02C7 2A              396     ADD A,R2
+02C8 FA              397     MOV R2,A
+02C9 898A            398     MOV TL0,R1
+02CB 8A8C            399     MOV TH0,R2
+02CD 7900            400     MOV R1,#00H
+02CF 7A00            401     MOV R2,#00H
+02D1 D28C            402     SETB TR0
+02D3 308DFD          403     LOOP_N2: JNB TF0,LOOP_N2
+02D6 C28C            404     CLR TR0
+02D8 C28D            405     CLR TF0
+02DA 22              406     RET
+                     407     
+02DB                 408     DELAY_N3:
+02DB 7949            409     MOV R1,#49H
+02DD 7A0D            410     MOV R2,#0DH
+02DF 758911          411     MOV TMOD,#00010001B
+02E2 E9              412     MOV A,R1
+02E3 64FF            413     XRL A,#0FFH
+02E5 F9              414     MOV R1,A
+02E6 EA              415     MOV A,R2
+02E7 64FF            416     XRL A,#0FFH
+02E9 FA              417     MOV R2,A
+02EA 7401            418     MOV A,#1
+02EC 29              419     ADD A,R1
+02ED F9              420     MOV R1,A
+02EE E4              421     CLR A
+02EF 13              422     RRC A
+02F0 2A              423     ADD A,R2
+02F1 FA              424     MOV R2,A
+02F2 898A            425     MOV TL0,R1
+02F4 8A8C            426     MOV TH0,R2
+02F6 7900            427     MOV R1,#00H
+02F8 7A00            428     MOV R2,#00H
+02FA D28C            429     SETB TR0
+02FC 308DFD          430     LOOP_N3: JNB TF0,LOOP_N3
+02FF C28C            431     CLR TR0
+0301 C28D            432     CLR TF0
+0303 22              433     RET
+                     434     
+0304                 435     DELAY_N4:
+0304 798E            436     MOV R1,#08EH
+0306 7A0A            437     MOV R2,#0AH
+0308 758911          438     MOV TMOD,#00010001B
+030B E9              439     MOV A,R1
+030C 64FF            440     XRL A,#0FFH
+030E F9              441     MOV R1,A
+030F EA              442     MOV A,R2
+0310 64FF            443     XRL A,#0FFH
+0312 FA              444     MOV R2,A
+0313 7401            445     MOV A,#1
+0315 29              446     ADD A,R1
+0316 F9              447     MOV R1,A
+0317 E4              448     CLR A
+0318 13              449     RRC A
+0319 2A              450     ADD A,R2
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     8
+
+031A FA              451     MOV R2,A
+031B 898A            452     MOV TL0,R1
+031D 8A8C            453     MOV TH0,R2
+031F 7900            454     MOV R1,#00H
+0321 7A00            455     MOV R2,#00H
+0323 D28C            456     SETB TR0
+0325 308DFD          457     LOOP_N4: JNB TF0,LOOP_N4
+0328 C28C            458     CLR TR0
+032A C28D            459     CLR TF0
+032C 22              460     RET
+                     461     
+032D                 462     DELAY_N5:
+032D 79D6            463     MOV R1,#0D6H
+032F 7A0B            464     MOV R2,#0BH
+0331 758911          465     MOV TMOD,#00010001B
+0334 E9              466     MOV A,R1
+0335 64FF            467     XRL A,#0FFH
+0337 F9              468     MOV R1,A
+0338 EA              469     MOV A,R2
+0339 64FF            470     XRL A,#0FFH
+033B FA              471     MOV R2,A
+033C 7401            472     MOV A,#1
+033E 29              473     ADD A,R1
+033F F9              474     MOV R1,A
+0340 E4              475     CLR A
+0341 13              476     RRC A
+0342 2A              477     ADD A,R2
+0343 FA              478     MOV R2,A
+0344 898A            479     MOV TL0,R1
+0346 8A8C            480     MOV TH0,R2
+0348 7900            481     MOV R1,#00H
+034A 7A00            482     MOV R2,#00H
+034C D28C            483     SETB TR0
+034E 308DFD          484     LOOP_N5: JNB TF0,LOOP_N5
+0351 C28C            485     CLR TR0
+0353 C28D            486     CLR TF0
+0355 22              487     RET
+                     488     
+                     489     
+1000                 490     ORG 1000H
+1000                 491     TMRINTR:
+                     492     
+1000                 493     STRT_N1:
+1000 BF011A          494     CJNE R7,#1,STRT_N2_1
+1003 DB07            495     DJNZ R3,T1N1
+1005 C28E            496     CLR TR1
+1007 C28F            497     CLR TF1
+1009 7C01            498     MOV R4,#1
+100B 32              499     RETI
+100C                 500     T1N1:
+100C C28E            501     CLR TR1
+100E C28F            502     CLR TF1
+1010 758911          503     MOV TMOD,#00010001B
+1013 8D8B            504     MOV TL1,R5
+1015 8E8D            505     MOV TH1,R6
+1017 75A888          506     MOV IE,#10001000B
+101A D28E            507     SETB TR1
+101C 32              508     RETI
+                     509     
+101D                 510     STRT_N2_1:
+101D BF021A          511     CJNE R7,#2,STRT_N3
+1020 DB07            512     DJNZ R3,T1N2_1
+1022 C28E            513     CLR TR1
+1024 C28F            514     CLR TF1
+1026 7C01            515     MOV R4,#1
+1028 32              516     RETI
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE     9
+
+1029                 517     T1N2_1:
+1029 C28E            518     CLR TR1
+102B C28F            519     CLR TF1
+102D 758911          520     MOV TMOD,#00010001B
+1030 8D8B            521     MOV TL1,R5
+1032 8E8D            522     MOV TH1,R6
+1034 75A888          523     MOV IE,#10001000B
+1037 D28E            524     SETB TR1
+1039 32              525     RETI
+                     526     
+103A                 527     STRT_N3:
+103A BF031A          528     CJNE R7,#3,STRT_N2_2
+103D DB07            529     DJNZ R3,T1N3
+103F C28E            530     CLR TR1
+1041 C28F            531     CLR TF1
+1043 7C01            532     MOV R4,#1
+1045 32              533     RETI
+1046                 534     T1N3:
+1046 C28E            535     CLR TR1
+1048 C28F            536     CLR TF1
+104A 758911          537     MOV TMOD,#00010001B
+104D 8D8B            538     MOV TL1,R5
+104F 8E8D            539     MOV TH1,R6
+1051 75A888          540     MOV IE,#10001000B
+1054 D28E            541     SETB TR1
+1056 32              542     RETI
+                     543     
+1057                 544     STRT_N2_2:
+1057 BF0418          545     CJNE R7,#4,STRT_N4_1
+105A DB05            546     DJNZ R3,T1N2_2
+105C C28E            547     CLR TR1
+105E 7C01            548     MOV R4,#1
+1060 32              549     RETI
+1061                 550     T1N2_2:
+1061 C28E            551     CLR TR1
+1063 C28F            552     CLR TF1
+1065 758911          553     MOV TMOD,#00010001B
+1068 8D8B            554     MOV TL1,R5
+106A 8E8D            555     MOV TH1,R6
+106C 75A888          556     MOV IE,#10001000B
+106F D28E            557     SETB TR1
+1071 32              558     RETI
+                     559     
+1072                 560     STRT_N4_1:
+1072 BF051A          561     CJNE R7,#5,STRT_SIL
+1075 DB07            562     DJNZ R3,T1N4_1
+1077 C28E            563     CLR TR1
+1079 C28F            564     CLR TF1
+107B 7C01            565     MOV R4,#1
+107D 32              566     RETI
+107E                 567     T1N4_1:
+107E C28E            568     CLR TR1
+1080 C28F            569     CLR TF1
+1082 758911          570     MOV TMOD,#00010001B
+1085 8D8B            571     MOV TL1,R5
+1087 8E8D            572     MOV TH1,R6
+1089 75A888          573     MOV IE,#10001000B
+108C D28E            574     SETB TR1
+108E 32              575     RETI
+                     576     
+108F                 577     STRT_SIL:
+108F BF061A          578     CJNE R7,#6,STRT_N4_2
+1092 DB07            579     DJNZ R3,T1SIL
+1094 C28E            580     CLR TR1
+1096 C28F            581     CLR TF1
+1098 7C01            582     MOV R4,#1
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE    10
+
+109A 32              583     RETI
+109B                 584     T1SIL:
+109B C28E            585     CLR TR1
+109D C28F            586     CLR TF1
+109F 758911          587     MOV TMOD,#00010001B
+10A2 8D8B            588     MOV TL1,R5
+10A4 8E8D            589     MOV TH1,R6
+10A6 75A888          590     MOV IE,#10001000B
+10A9 D28E            591     SETB TR1
+10AB 32              592     RETI
+                     593     
+10AC                 594     STRT_N4_2:
+10AC BF071A          595     CJNE R7,#7,STRT_N5
+10AF DB07            596     DJNZ R3,T1N4_2
+10B1 C28E            597     CLR TR1
+10B3 C28F            598     CLR TF1
+10B5 7C01            599     MOV R4,#1
+10B7 32              600     RETI
+10B8                 601     T1N4_2:
+10B8 C28E            602     CLR TR1
+10BA C28F            603     CLR TF1
+10BC 758911          604     MOV TMOD,#00010001B
+10BF 8D8B            605     MOV TL1,R5
+10C1 8E8D            606     MOV TH1,R6
+10C3 75A888          607     MOV IE,#10001000B
+10C6 D28E            608     SETB TR1
+10C8 32              609     RETI
+                     610     
+10C9                 611     STRT_N5:
+10C9 BF081A          612     CJNE R7,#8,ENDING
+10CC DB07            613     DJNZ R3,T1N5
+10CE C28E            614     CLR TR1
+10D0 C28F            615     CLR TF1
+10D2 7C01            616     MOV R4,#1
+10D4 32              617     RETI
+10D5                 618     T1N5:
+10D5 C28E            619     CLR TR1
+10D7 C28F            620     CLR TF1
+10D9 758911          621     MOV TMOD,#00010001B
+10DC 8D8B            622     MOV TL1,R5
+10DE 8E8D            623     MOV TH1,R6
+10E0 75A888          624     MOV IE,#10001000B
+10E3 D28E            625     SETB TR1
+10E5 32              626     RETI
+                     627     
+10E6                 628     ENDING:
+10E6 32              629     RETI
+                     630     
+                     631     END
+                             
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE    11
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E              T Y P E  V A L U E   ATTRIBUTES
+
+DELAY . . . . . . .  C ADDR   026BH   A   
+DELAY_N1. . . . . .  C ADDR   0289H   A   
+DELAY_N2. . . . . .  C ADDR   02B2H   A   
+DELAY_N3. . . . . .  C ADDR   02DBH   A   
+DELAY_N4. . . . . .  C ADDR   0304H   A   
+DELAY_N5. . . . . .  C ADDR   032DH   A   
+ENDING. . . . . . .  C ADDR   10E6H   A   
+EXIT. . . . . . . .  C ADDR   0257H   A   
+IE. . . . . . . . .  D ADDR   00A8H   A   
+LCD_COMMAND . . . .  C ADDR   023DH   A   
+LCD_DATA. . . . . .  D ADDR   00A0H   A   
+LCD_EN. . . . . . .  B ADDR   0080H.2 A   
+LCD_INIT. . . . . .  C ADDR   0200H   A   
+LCD_RS. . . . . . .  B ADDR   0080H.0 A   
+LCD_RW. . . . . . .  B ADDR   0080H.1 A   
+LCD_SENDDATA. . . .  C ADDR   025AH   A   
+LCD_SENDSTRING. . .  C ADDR   024CH   A   
+LCD_SENDSTRING_LOOP  C ADDR   024EH   A   
+LOOP1 . . . . . . .  C ADDR   0273H   A   
+LOOP2 . . . . . . .  C ADDR   0271H   A   
+LOOP_N1 . . . . . .  C ADDR   02AAH   A   
+LOOP_N2 . . . . . .  C ADDR   02D3H   A   
+LOOP_N3 . . . . . .  C ADDR   02FCH   A   
+LOOP_N4 . . . . . .  C ADDR   0325H   A   
+LOOP_N5 . . . . . .  C ADDR   034EH   A   
+MAIN. . . . . . . .  C ADDR   0040H   A   
+N1. . . . . . . . .  C ADDR   007DH   A   
+N2_1. . . . . . . .  C ADDR   00AEH   A   
+N2_2. . . . . . . .  C ADDR   0110H   A   
+N3. . . . . . . . .  C ADDR   00DFH   A   
+N4_1. . . . . . . .  C ADDR   0141H   A   
+N4_2. . . . . . . .  C ADDR   019DH   A   
+N5. . . . . . . . .  C ADDR   01CEH   A   
+NSIL. . . . . . . .  C ADDR   0172H   A   
+P0. . . . . . . . .  D ADDR   0080H   A   
+P2. . . . . . . . .  D ADDR   00A0H   A   
+RETN2_1 . . . . . .  C ADDR   0088H   A   
+RETN2_2 . . . . . .  C ADDR   00EAH   A   
+RETN3 . . . . . . .  C ADDR   00B9H   A   
+RETN4_1 . . . . . .  C ADDR   011BH   A   
+RETN4_2 . . . . . .  C ADDR   0177H   A   
+RETN5 . . . . . . .  C ADDR   01A8H   A   
+RETSIL. . . . . . .  C ADDR   014CH   A   
+SLINE1. . . . . . .  C ADDR   027CH   A   
+STRT_N1 . . . . . .  C ADDR   1000H   A   
+STRT_N2_1 . . . . .  C ADDR   101DH   A   
+STRT_N2_2 . . . . .  C ADDR   1057H   A   
+STRT_N3 . . . . . .  C ADDR   103AH   A   
+STRT_N4_1 . . . . .  C ADDR   1072H   A   
+STRT_N4_2 . . . . .  C ADDR   10ACH   A   
+STRT_N5 . . . . . .  C ADDR   10C9H   A   
+STRT_SIL. . . . . .  C ADDR   108FH   A   
+T1N1. . . . . . . .  C ADDR   100CH   A   
+T1N2_1. . . . . . .  C ADDR   1029H   A   
+T1N2_2. . . . . . .  C ADDR   1061H   A   
+T1N3. . . . . . . .  C ADDR   1046H   A   
+T1N4_1. . . . . . .  C ADDR   107EH   A   
+T1N4_2. . . . . . .  C ADDR   10B8H   A   
+T1N5. . . . . . . .  C ADDR   10D5H   A   
+T1SIL . . . . . . .  C ADDR   109BH   A   
+A51 MACRO ASSEMBLER  Q2                                                                   03/12/2022 15:14:35 PAGE    12
+
+TF0 . . . . . . . .  B ADDR   0088H.5 A   
+TF1 . . . . . . . .  B ADDR   0088H.7 A   
+TH0 . . . . . . . .  D ADDR   008CH   A   
+TH1 . . . . . . . .  D ADDR   008DH   A   
+TL0 . . . . . . . .  D ADDR   008AH   A   
+TL1 . . . . . . . .  D ADDR   008BH   A   
+TMOD. . . . . . . .  D ADDR   0089H   A   
+TMRINTR . . . . . .  C ADDR   1000H   A   
+TR0 . . . . . . . .  B ADDR   0088H.4 A   
+TR1 . . . . . . . .  B ADDR   0088H.6 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

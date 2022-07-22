@@ -1,0 +1,95 @@
+A51 MACRO ASSEMBLER  BINARY_SEARCH                                                        04/01/2022 19:43:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Binary_search.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE Binary_search.a51 SET(SMALL) DEBUG PRINT(.\Listings\Binary_search
+                      .lst) OBJECT(.\Objects\Binary_search.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 3130              5     CALL SEARCH
+0102 75330E            6     MOV 33H,#0EH
+0105 80FE              7     HERE: SJMP HERE
+0130                   8     ORG 130H
+0130                   9     SEARCH:
+0130 AD30             10     MOV R5,30H
+0132 A931             11     MOV R1,31H
+0134 AA32             12     MOV R2,32H
+0136 AC01             13     MOV R4,01H
+0138 0C               14     INC R4
+0139 02014B           15     LJMP FORWARD
+013C                  16     NEXT:
+013C A805             17     MOV R0,05H
+013E E6               18     MOV A, @R0
+013F B50205           19     CJNE A,02H,JUMP
+0142 850033           20     MOV 33H, 00H
+0145 80BE             21     SJMP HERE
+0147                  22     JUMP:
+0147 0D               23     INC R5
+0148 8001             24     SJMP FORWARD
+014A 22               25     RET
+014B                  26     FORWARD:
+014B E9               27     MOV A,R1
+014C 75F002           28     MOV B,#02H
+014F 84               29     DIV AB
+0150 F9               30     MOV R1,A
+0151 E4               31     CLR A
+0152 2D               32     ADD A,R5
+0153 29               33     ADD A,R1
+0154 FE               34     MOV R6,A
+0155 1E               35     DEC R6
+0156 A806             36     MOV R0,06H
+0158 E6               37     MOV A,@R0
+0159 B50201           38     CJNE A,02H,COMPRE
+015C 22               39     RET
+015D                  40     COMPRE:
+015D E4               41     CLR A 
+015E 33               42     RLC A
+015F B40104           43     CJNE A,#01H,STRHALF
+0162 B40006           44     CJNE A,#00H,ENDHALF
+0165 22               45     RET
+0166                  46     STRHALF:
+0166 E4               47     CLR A
+0167 B90008           48     CJNE R1,#00H,VRF
+016A 22               49     RET
+016B                  50     ENDHALF:
+016B AD06             51     MOV R5,06H
+016D E4               52     CLR A
+016E B90001           53     CJNE R1,#00H,VRF
+0171 22               54     RET
+0172                  55     VRF:
+0172 D504C7           56     DJNZ 04H,NEXT
+0175 22               57     RET
+A51 MACRO ASSEMBLER  BINARY_SEARCH                                                        04/01/2022 19:43:01 PAGE     2
+
+                      58     END
+A51 MACRO ASSEMBLER  BINARY_SEARCH                                                        04/01/2022 19:43:01 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+COMPRE . . . . . .  C ADDR   015DH   A   
+ENDHALF. . . . . .  C ADDR   016BH   A   
+FORWARD. . . . . .  C ADDR   014BH   A   
+HERE . . . . . . .  C ADDR   0105H   A   
+JUMP . . . . . . .  C ADDR   0147H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+NEXT . . . . . . .  C ADDR   013CH   A   
+SEARCH . . . . . .  C ADDR   0130H   A   
+STRHALF. . . . . .  C ADDR   0166H   A   
+VRF. . . . . . . .  C ADDR   0172H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

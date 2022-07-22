@@ -1,0 +1,172 @@
+A51 MACRO ASSEMBLER  Q1                                                                   04/02/2022 14:36:17 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Q1.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE Q1.a51 SET(SMALL) DEBUG PRINT(.\Listings\Q1.lst) OBJECT(.\Objects
+                      \Q1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 00H
+0000 020040            2     LJMP MAIN
+0003 80FE              3     ENDING: SJMP ENDING  
+0040                   4     ORG 40H
+0040                   5     MAIN:
+0040 A930              6     MOV R1,30H
+0042 B9021B            7     CJNE R1,#2,MAT_3
+0045                   8     MAT_2:
+0045 E531              9     MOV A,31H
+0047 2535             10     ADD A,35H
+0049 F539             11     MOV 39H,A
+                      12     
+004B E532             13     MOV A,32H
+004D 2536             14     ADD A,36H
+004F F53A             15     MOV 3AH,A
+                      16     
+0051 E533             17     MOV A,33H
+0053 2537             18     ADD A,37H
+0055 F53B             19     MOV 3BH,A
+                      20     
+0057 E534             21     MOV A,34H
+0059 2538             22     ADD A,38H
+005B F53C             23     MOV 3CH,A
+                      24      
+005D 020003           25     LJMP ENDING
+                      26     
+0060                  27     MAT_3:
+0060 B90339           28     CJNE R1,#3,MAT_4
+0063 E531             29     MOV A,31H
+0065 253A             30     ADD A,3AH
+0067 F543             31     MOV 43H,A
+                      32     
+0069 E532             33     MOV A,32H
+006B 253B             34     ADD A,3BH
+006D F544             35     MOV 44H,A
+                      36     
+006F E533             37     MOV A,33H
+0071 253C             38     ADD A,3CH
+0073 F545             39     MOV 45H,A
+                      40     
+0075 E534             41     MOV A,34H
+0077 253D             42     ADD A,3DH
+0079 F546             43     MOV 46H,A
+                      44     
+007B E535             45     MOV A,35H
+007D 253E             46     ADD A,3EH
+007F F547             47     MOV 47H,A
+                      48     
+0081 E536             49     MOV A,36H
+0083 253F             50     ADD A,3FH
+0085 F548             51     MOV 48H,A
+                      52     
+0087 E537             53     MOV A,37H
+0089 2540             54     ADD A,40H
+008B F549             55     MOV 49H,A
+                      56     
+008D E538             57     MOV A,38H
+A51 MACRO ASSEMBLER  Q1                                                                   04/02/2022 14:36:17 PAGE     2
+
+008F 2541             58     ADD A,41H
+0091 F54A             59     MOV 4AH,A
+                      60     
+0093 E539             61     MOV A,39H
+0095 2542             62     ADD A,42H
+0097 F54B             63     MOV 4BH,A
+                      64     
+0099 020003           65     LJMP ENDING
+                      66     
+                      67     
+009C                  68     MAT_4:
+009C B90463           69     CJNE R1,#4,EXIT
+009F E531             70     MOV A,31H
+00A1 2541             71     ADD A,41H
+00A3 F551             72     MOV 51H,A
+                      73     
+00A5 E532             74     MOV A,32H
+00A7 2542             75     ADD A,42H
+00A9 F552             76     MOV 52H,A
+                      77     
+00AB E533             78     MOV A,33H
+00AD 2543             79     ADD A,43H
+00AF F553             80     MOV 53H,A
+                      81     
+00B1 E534             82     MOV A,34H
+00B3 2544             83     ADD A,44H
+00B5 F554             84     MOV 54H,A
+                      85     
+00B7 E535             86     MOV A,35H
+00B9 2545             87     ADD A,45H
+00BB F555             88     MOV 55H,A
+                      89     
+00BD E536             90     MOV A,36H
+00BF 2546             91     ADD A,46H
+00C1 F556             92     MOV 56H,A
+                      93     
+00C3 E537             94     MOV A,37H
+00C5 2547             95     ADD A,47H
+00C7 F557             96     MOV 57H,A
+                      97     
+00C9 E538             98     MOV A,38H
+00CB 2548             99     ADD A,48H
+00CD F558            100     MOV 58H,A
+                     101     
+00CF E539            102     MOV A,39H
+00D1 2549            103     ADD A,49H
+00D3 F559            104     MOV 59H,A
+                     105     
+00D5 E53A            106     MOV A,3AH
+00D7 254A            107     ADD A,4AH
+00D9 F55A            108     MOV 5AH,A
+                     109     
+00DB E53B            110     MOV A,3BH
+00DD 254B            111     ADD A,4BH
+00DF F55B            112     MOV 5BH,A
+                     113     
+00E1 E53C            114     MOV A,3CH
+00E3 254C            115     ADD A,4CH
+00E5 F55C            116     MOV 5CH,A
+                     117     
+00E7 E53D            118     MOV A,3DH
+00E9 254D            119     ADD A,4DH
+00EB F55D            120     MOV 5DH,A
+                     121     
+00ED E53E            122     MOV A,3EH
+00EF 254E            123     ADD A,4EH
+A51 MACRO ASSEMBLER  Q1                                                                   04/02/2022 14:36:17 PAGE     3
+
+00F1 F55E            124     MOV 5EH,A
+                     125     
+00F3 E53F            126     MOV A,3FH
+00F5 254F            127     ADD A,4FH
+00F7 F55F            128     MOV 5FH,A
+                     129     
+00F9 E540            130     MOV A,40H
+00FB 2550            131     ADD A,50H
+00FD F560            132     MOV 60H,A
+                     133     
+00FF 020003          134     LJMP ENDING
+0102                 135     EXIT:
+0102 020003          136     LJMP ENDING
+                     137     
+                     138     END
+A51 MACRO ASSEMBLER  Q1                                                                   04/02/2022 14:36:17 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ENDING . . . . . .  C ADDR   0003H   A   
+EXIT . . . . . . .  C ADDR   0102H   A   
+MAIN . . . . . . .  C ADDR   0040H   A   
+MAT_2. . . . . . .  C ADDR   0045H   A   
+MAT_3. . . . . . .  C ADDR   0060H   A   
+MAT_4. . . . . . .  C ADDR   009CH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,152 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              04/02/2022 17:12:34 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: F:\keil software\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <at89c5131.h>
+   2          #include "endsem.h"
+   3          
+   4          char S_str[6]= {0,0,0,0,0,0};   //String for Balance Sita
+   5          char G_str[6] = {0,0,0,0,0,0};  //String for Balance Gita
+   6          char n500_s[3]= {0,0,0};    // STRING FOR 500RS NOTE
+   7          char n100_s[3]= {0,0,0};    // STRING FOR 100RS NOTE
+   8          
+   9          char password[5] = {0,0,0,0,0} ;   //PASSWORD ARRAY
+  10            
+  11          //Main function
+  12          
+  13          //-------------------------------------------------
+  14          void main(void)
+  15          {
+  16   1        unsigned char ch='1';
+  17   1        unsigned char i=0;
+  18   1        unsigned int l=0;
+  19   1        unsigned char g=0;
+  20   1        unsigned int j=0;
+  21   1        
+  22   1        uart_init();            // Please finish this function in endsem.h 
+  23   1          while (1)
+  24   1          {
+  25   2           transmit_string("\n\r*Press A for Account display and W for withdrawing cash*\n");
+  26   2         ch = receive_char();
+  27   2            if(ch=='A'){
+  28   3              transmit_string("\n\r*PLEASE ENTER YOUR ACCOUNT NUMBER*\n");
+  29   3              ch = receive_char();
+  30   3              if(ch=='1'){transmit_string("\n\r*Account holder : Sita*\n");
+  31   4                transmit_string("\n\r*Account balance :10000*\n");}
+  32   3              else if(ch=='2'){transmit_string("\n\r*Account holder : Gita*\n");
+  33   4                transmit_string("\n\r*Account balance :10000*\n");}
+  34   3              else {
+  35   4                transmit_string("\n\r*no such account,pleae enter valid details*\n");}
+  36   3              }
+  37   2             else if(ch=='a'){
+  38   3              transmit_string("\n\r*PLEASE ENTER YOUR ACCOUNT NUMBER*\n");
+  39   3              ch = receive_char();
+  40   3              if(ch=='1'){transmit_string("\n\r*Account holder : Sita*\n");
+  41   4                transmit_string("\n\r*Account balance :10000*\n");}
+  42   3              else if(ch=='2'){transmit_string("\n\r*Account holder : Gita*\n");
+  43   4                transmit_string("\n\r*Account balance :10000*\n");}
+  44   3              else {
+  45   4                transmit_string("\n\r*no such account,pleae enter valid details*\n");}
+  46   3              }
+  47   2             
+  48   2              else if(ch=='W'){ transmit_string("\n\r*withdraw state, enter your account number*\n");
+  49   3                ch = receive_char();
+  50   3                
+  51   3                if(ch=='1'){transmit_string("\n\r*Account holder : Sita*\n");
+  52   4                transmit_string("\n\r*Account balance :10000*\n");
+  53   4                  transmit_string("\n\r*Enter amount, in hundreds*\n");
+  54   4                  ch = receive_char();
+C51 COMPILER V9.60.0.0   MAIN                                                              04/02/2022 17:12:34 PAGE 2   
+
+  55   4                  for (j=1;j<100;j++){
+  56   5                    int_to_string(j,&i);
+  57   5                    if(i==ch){l=j;
+  58   6                     break;};   }
+  59   4                  l=l*100;
+  60   4                  if(l<=10000){
+  61   5                    int_to_string(l,&g);
+  62   5                    transmit_char(g);
+  63   5                  }
+  64   4                  else{transmit_string("\n\r*insufficient funds*\n");}
+  65   4                }
+  66   3              else if(ch=='2'){transmit_string("\n\r*Account holder : Gita*\n");
+  67   4                transmit_string("\n\r*Account balance :10000*\n");
+  68   4              transmit_string("\n\r*Enter amount, in hundreds*\n");
+  69   4                  ch = receive_char();
+  70   4                  for (j=1;j<100;j++){
+  71   5                    int_to_string(j,&i);
+  72   5                    if(i==ch){l=j;
+  73   6                     break;};   }
+  74   4                  l=l*100;
+  75   4                  if(l<=10000){unsigned char g;
+  76   5                    int_to_string(l,&g);
+  77   5                    transmit_char(g);
+  78   5                  }
+  79   4                  else{transmit_string("\n\r*insufficient funds*\n");}}
+  80   3              else {
+  81   4                transmit_string("\n\r*no such account,pleae enter valid details*\n");}}
+  82   2              
+  83   2               else if(ch=='w'){ transmit_string("\n\r*withdraw state, enter your account number*\n");
+  84   3                ch = receive_char();
+  85   3                
+  86   3                if(ch=='1'){transmit_string("\n\r*Account holder : Sita*\n");
+  87   4                transmit_string("\n\r*Account balance :10000*\n");
+  88   4                  transmit_string("\n\r*Enter amount, in hundreds*\n");
+  89   4                  ch = receive_char();
+  90   4                  for (j=1;j<100;j++){
+  91   5                    int_to_string(j,&i);
+  92   5                    if(i==ch){l=j;
+  93   6                     break;};   }
+  94   4                  l=l*100;
+  95   4                  if(l<=10000){
+  96   5                    int_to_string(l,&g);
+  97   5                    transmit_char(g);
+  98   5                  }
+  99   4                  else{transmit_string("\n\r*insufficient funds*\n");}
+ 100   4                }
+ 101   3              else if(ch=='2'){transmit_string("\n\r*Account holder : Gita*\n");
+ 102   4                transmit_string("\n\r*Account balance :10000*\n");
+ 103   4              transmit_string("\n\r*Enter amount, in hundreds*\n");
+ 104   4                  ch = receive_char();
+ 105   4                  for (j=1;j<100;j++){
+ 106   5                    int_to_string(j,&i);
+ 107   5                    if(i==ch){l=j;
+ 108   6                     break;};   }
+ 109   4                  l=l*100;
+ 110   4                  if(l<=10000){unsigned char g;
+ 111   5                    int_to_string(l,&g);
+ 112   5                    transmit_char(g);
+ 113   5                  }
+ 114   4                  else{transmit_string("\n\r*insufficient funds*\n");}}
+ 115   3              else {
+ 116   4                transmit_string("\n\r*no such account,pleae enter valid details*\n");}}
+C51 COMPILER V9.60.0.0   MAIN                                                              04/02/2022 17:12:34 PAGE 3   
+
+ 117   2                
+ 118   2            }
+ 119   1            }
+ 120                
+ 121                
+ 122                      // YOUR CODE GOES HE
+ 123          
+ 124          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    995    ----
+   CONSTANT SIZE    =    329    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     23      21
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

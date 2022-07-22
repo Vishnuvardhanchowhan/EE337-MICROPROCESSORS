@@ -1,0 +1,3 @@
+".\Objects\CONVERSION_HEX-ASCII.obj" 
+TO ".\Objects\conversion_hex-ascii" 
+PRINT(".\Listings\conversion_hex-ascii.m51") RAMSIZE(256) 

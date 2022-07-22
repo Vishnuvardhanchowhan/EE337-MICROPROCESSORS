@@ -1,0 +1,106 @@
+A51 MACRO ASSEMBLER  1S_DELAY                                                             02/06/2022 18:02:34 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\1S_DELAY.obj
+ASSEMBLER INVOKED BY: F:\keil software\C51\BIN\A51.EXE 1S_DELAY.a51 SET(SMALL) DEBUG PRINT(.\Listings\1S_DELAY.lst) OBJE
+                      CT(.\Objects\1S_DELAY.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 755002            5     MOV 50H,#2
+0103 755108            6     MOV 51H,#8
+0106 755200            7     MOV 52H,#0
+0109 755309            8     MOV 53H,#9
+010C 755402            9     MOV 54H,#2
+010F 755500           10     MOV 55H,#0
+0112 755600           11     MOV 56H,#0
+0115 755702           12     MOV 57H,#2
+0118 AA50             13     MOV R2,50H
+011A 7850             14     MOV R0,#50H
+011C 7BC8             15     MOV R3,#200
+011E 7C00             16     MOV R4,#0
+0120 7D00             17     MOV R5,#0
+0122 7F0B             18     MOV R7,#0bH
+0124 3128             19     CALL DATE
+0126 80FE             20     HERE:SJMP HERE
+0128                  21     DATE:
+0128 EA               22     MOV A,R2
+0129 C4               23     SWAP A
+012A F590             24     MOV P1,A
+012C 08               25     INC R0
+012D 8602             26     MOV 02H,@R0
+012F 3132             27     CALL delay_10ms
+0131 22               28     ret
+0132                  29     delay_10ms:
+0132 C000             30     push 00h
+0134 7E28             31     mov r6, #40
+0136 3152             32     h2: acall delay_250us
+0138 DEFC             33     djnz r6, h2
+013A D000             34     pop 00h
+013C 8001             35     SJMP NEXT
+013E 22               36     ret
+013F                  37     NEXT:
+013F DBF1             38     DJNZ R3,delay_10ms 
+0141 7B64             39     MOV R3,#100
+0143 DF16             40     DJNZ R7,VRF1
+0145 AA50             41     MOV R2,50H
+0147 7850             42     MOV R0,#50H
+0149 7F0B             43     MOV R7,#0bH
+014B 7C00             44     MOV R4,#0
+014D 0D               45     INC R5
+014E 020128           46     LJMP DATE
+0151 22               47     ret
+0152                  48     delay_250us:
+0152 C000             49     push 00h
+0154 79F4             50     mov r1, #244
+0156 D9FE             51     h1: djnz r1, h1
+0158 D000             52     pop 00h
+015A 22               53     ret
+015B                  54     VRF1:
+015B 0D               55     INC R5
+015C BD0807           56     CJNE R5,#8,VRF
+015F 7C00             57     MOV R4,#0
+A51 MACRO ASSEMBLER  1S_DELAY                                                             02/06/2022 18:02:34 PAGE     2
+
+0161 7DFD             58     MOV R5,#-3
+0163 020128           59     LJMP DATE
+0166                  60     VRF:
+0166 0C               61     INC R4
+0167 BC02BE           62     CJNE R4,#2,DATE 
+016A 740F             63     MOV A,#0fH
+016C C4               64     SWAP A
+016D F590             65     MOV P1,A
+016F 7CFF             66     MOV R4,#-1
+0171 020132           67     LJMP delay_10ms
+0174 22               68     RET
+                      69     END
+A51 MACRO ASSEMBLER  1S_DELAY                                                             02/06/2022 18:02:34 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DATE . . . . . . .  C ADDR   0128H   A   
+DELAY_10MS . . . .  C ADDR   0132H   A   
+DELAY_250US. . . .  C ADDR   0152H   A   
+H1 . . . . . . . .  C ADDR   0156H   A   
+H2 . . . . . . . .  C ADDR   0136H   A   
+HERE . . . . . . .  C ADDR   0126H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+NEXT . . . . . . .  C ADDR   013FH   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+VRF. . . . . . . .  C ADDR   0166H   A   
+VRF1 . . . . . . .  C ADDR   015BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
